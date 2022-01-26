@@ -19,4 +19,4 @@ class SpecialistViewSet(viewsets.ModelViewSet):
 class CheckInViewSet(viewsets.ModelViewSet):
     queryset = CheckIn.objects.all()
     serializer_class = CheckInSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser]

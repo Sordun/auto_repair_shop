@@ -14,7 +14,7 @@ class SpecialistAdmin(admin.ModelAdmin):
 
 
 class ClientsAdmin(admin.ModelAdmin):
-    list_display = ["user", "name", "car_model"]
+    list_display = ("user", "name", "car_model",)
 
 
 admin.site.register(CheckIn)
