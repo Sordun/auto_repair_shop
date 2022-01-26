@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from shop.validators import date_validator
+
 
 class Clients(models.Model):
     """Клиенты"""
@@ -29,18 +31,32 @@ class Specialist(models.Model):
         verbose_name_plural = "Специалисты"
 
 
+class BusinessHours(models.IntegerChoices):
+    """Часы приёма"""
+    HOUR10 = 10, '10:00'
+    HOUR11 = 11, '11:00'
+    HOUR12 = 12, '12:00'
+    HOUR13 = 13, '13:00'
+    HOUR14 = 14, '14:00'
+    HOUR15 = 15, '15:00'
+    HOUR16 = 16, '16:00'
+    HOUR17 = 17, '17:00'
+    HOUR18 = 18, '18:00'
+    HOUR19 = 19, '19:00'
+
+
 class CheckIn(models.Model):
     """Запись на диагностику"""
-    date = models.DateField(verbose_name="Дата")
-    time = models.TimeField(verbose_name="Время")
+    name = models.ForeignKey(Clients, verbose_name="ФИО клиента", on_delete=models.CASCADE)
+    date = models.DateField(verbose_name="Дата приёма", validators=[date_validator])
+    time = models.IntegerField(verbose_name="Время приёма", choices=BusinessHours.choices)
     specialist = models.ForeignKey(Specialist, verbose_name="Специалист", on_delete=models.CASCADE)
     is_complete = models.BooleanField(verbose_name="Выполнено", default=False)
-    created_by = models.ForeignKey(User, verbose_name="Создал", on_delete=models.CASCADE)
-    name = models.ForeignKey(Clients, verbose_name="ФИО клиента", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Запись сделал {self.created_by}"
+        return f"Запись № {self.id} сделал {self.specialist}"
 
     class Meta:
-        verbose_name = "Запись"
-        verbose_name_plural = "Записи"
+        verbose_name = "Запись приёма"
+        verbose_name_plural = "Записи приёма"
+
