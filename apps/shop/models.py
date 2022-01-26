@@ -48,15 +48,14 @@ class BusinessHours(models.IntegerChoices):
 class CheckIn(models.Model):
     """Запись на диагностику"""
     name = models.ForeignKey(Clients, verbose_name="ФИО клиента", on_delete=models.CASCADE)
+    specialist = models.ForeignKey(Specialist, verbose_name="Специалист", on_delete=models.CASCADE)
     date = models.DateField(verbose_name="Дата приёма", validators=[date_validator])
     time = models.IntegerField(verbose_name="Время приёма", choices=BusinessHours.choices)
-    specialist = models.ForeignKey(Specialist, verbose_name="Специалист", on_delete=models.CASCADE)
     is_complete = models.BooleanField(verbose_name="Выполнено", default=False)
 
     def __str__(self):
-        return f"Запись № {self.id} сделал {self.specialist}"
+        return f"Запись № {self.id} сделал {self.specialist} на {self.date} в {self.time}"
 
     class Meta:
         verbose_name = "Запись приёма"
         verbose_name_plural = "Записи приёма"
-
