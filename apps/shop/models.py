@@ -21,7 +21,6 @@ class Clients(models.Model):
 class Specialist(models.Model):
     """Специалист"""
     specialist_name = models.CharField(verbose_name="ФИО специалиста", max_length=100)
-    is_active = models.BooleanField(verbose_name="Доступен", default=True)
 
     def __str__(self):
         return self.specialist_name
