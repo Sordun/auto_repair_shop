@@ -58,3 +58,5 @@ class CheckIn(models.Model):
     class Meta:
         verbose_name = "Запись приёма"
         verbose_name_plural = "Записи приёма"
+        unique_together = ("date", "time", "specialist")
+        ordering = ["date", "time", "specialist"]
