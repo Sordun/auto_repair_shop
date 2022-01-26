@@ -19,9 +19,7 @@ class Clients(models.Model):
 class Specialist(models.Model):
     """Специалист"""
     specialist_name = models.CharField(verbose_name="ФИО специалиста", max_length=100)
-    clients_name = models.ForeignKey(Clients, verbose_name="ФИО клиента", on_delete=models.CASCADE)
-    date = models.DateField(verbose_name="Дата диагностики")
-    time = models.TimeField(verbose_name="Время диагностики")
+    is_active = models.BooleanField(verbose_name="Доступен", default=True)
 
     def __str__(self):
         return self.specialist_name
@@ -33,11 +31,15 @@ class Specialist(models.Model):
 
 class CheckIn(models.Model):
     """Запись на диагностику"""
-    name = models.ForeignKey(Clients, verbose_name="ФИО клиента", on_delete=models.CASCADE)
+    date = models.DateField(verbose_name="Дата")
+    time = models.TimeField(verbose_name="Время")
     specialist = models.ForeignKey(Specialist, verbose_name="Специалист", on_delete=models.CASCADE)
+    is_complete = models.BooleanField(verbose_name="Выполнено", default=False)
+    created_by = models.ForeignKey(User, verbose_name="Создал", on_delete=models.CASCADE)
+    name = models.ForeignKey(Clients, verbose_name="ФИО клиента", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.specialist
+        return f"Запись сделал {self.created_by}"
 
     class Meta:
         verbose_name = "Запись"
