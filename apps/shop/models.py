@@ -65,7 +65,7 @@ class CheckIn(models.Model):
 
     def __str__(self):
         return (
-            f"Запись № {self.id} сделал {self.specialist} на {self.date} в {self.time}"
+            f"Запись № {self.id} у {self.specialist} на {self.date} в {self.time}"
         )
 
     class Meta:
