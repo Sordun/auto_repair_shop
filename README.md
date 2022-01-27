@@ -30,6 +30,11 @@ docker-compose exec app bash
 ```
 Выход ctrl + z или ctrl + p + q
 
+#### Создание миграций:
+```bash
+python ./manage.py makemigrations
+```
+
 #### Применение миграций:
 ```bash
 python ./manage.py migrate
