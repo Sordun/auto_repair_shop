@@ -13,9 +13,10 @@ class SpecialistAdmin(admin.ModelAdmin):
     inlines = [CheckInInline]
 
 
+@admin.register(Clients)
 class ClientsAdmin(admin.ModelAdmin):
     list_display = ("user", "name", "car_model",)
+    fields = ("name", "user", "car_model",)
 
 
 admin.site.register(CheckIn)
-admin.site.register(Clients, ClientsAdmin)
