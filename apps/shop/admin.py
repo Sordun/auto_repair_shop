@@ -18,8 +18,16 @@ class SpecialistAdmin(admin.ModelAdmin):
 
 @admin.register(Clients)
 class ClientsAdmin(admin.ModelAdmin):
-    list_display = ("user", "name", "car_model",)
-    fields = ("name", "user", "car_model",)
+    list_display = (
+        "user",
+        "name",
+        "car_model",
+    )
+    fields = (
+        "name",
+        "user",
+        "car_model",
+    )
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
