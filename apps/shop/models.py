@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from shop.validators import date_validator
 
 
-class Clients(models.Model):
+class Client(models.Model):
     """Клиенты"""
 
     name = models.CharField(verbose_name="ФИО клиента", max_length=100)
@@ -24,10 +24,10 @@ class Clients(models.Model):
 class Specialist(models.Model):
     """Специалист"""
 
-    specialist_name = models.CharField(verbose_name="ФИО специалиста", max_length=100)
+    name = models.CharField(verbose_name="ФИО специалиста", max_length=100)
 
     def __str__(self):
-        return self.specialist_name
+        return self.name
 
     class Meta:
         verbose_name = "Специалист"
@@ -52,7 +52,7 @@ class CheckIn(models.Model):
         HOUR19 = 19, "19:00"
 
     name = models.ForeignKey(
-        Clients, verbose_name="ФИО клиента", on_delete=models.CASCADE
+        Client, verbose_name="ФИО клиента", on_delete=models.CASCADE
     )
     specialist = models.ForeignKey(
         Specialist, verbose_name="Специалист", on_delete=models.CASCADE

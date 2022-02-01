@@ -1,21 +1,21 @@
 from rest_framework import serializers
 
-from shop.models import Clients, Specialist, CheckIn
+from shop.models import Client, Specialist, CheckIn
 
 
-class ClientsSerializer(serializers.ModelSerializer):
+class ClientSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Clients
-        fields = ["url", "name", "user", "car_model"]
+        model = Client
+        fields = ["name", "user", "car_model"]
 
 
 class SpecialistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Specialist
-        fields = ["url", "specialist_name"]
+        fields = ["name"]
 
 
 class CheckInSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckIn
-        fields = ["url", "name", "specialist", "date", "time"]
+        fields = ["name", "specialist", "date", "time"]

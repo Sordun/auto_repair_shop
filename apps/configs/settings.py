@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "shop",
     "rest_framework_simplejwt",
-    "djoser",
 ]
 
 MIDDLEWARE = [
@@ -140,12 +139,4 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 100,
-}
-
-DJOSER = {
-    "PASSWORD_RESET_CONFIRM_URL": "#/password/reset/confirm/{uid}/{token}",
-    "USERNAME_RESET_CONFIRM_URL": "#/username/reset/confirm/{uid}/{token}",
-    "ACTIVATION_URL": "#/activate/{uid}/{token}",
-    "SEND_ACTIVATION_EMAIL": False,
-    "SERIALIZERS": {},
 }

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db.models import QuerySet
 from django.http import HttpRequest
 
-from shop.models import CheckIn, Clients, Specialist
+from shop.models import CheckIn, Client, Specialist
 
 
 class CheckInInline(admin.TabularInline):
@@ -12,12 +12,12 @@ class CheckInInline(admin.TabularInline):
 
 @admin.register(Specialist)
 class SpecialistAdmin(admin.ModelAdmin):
-    list_display = ("specialist_name",)
+    list_display = ("name",)
     inlines = [CheckInInline]
 
 
-@admin.register(Clients)
-class ClientsAdmin(admin.ModelAdmin):
+@admin.register(Client)
+class ClientAdmin(admin.ModelAdmin):
     list_display = (
         "user",
         "name",

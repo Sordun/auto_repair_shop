@@ -1,12 +1,12 @@
 from rest_framework import viewsets, permissions
 
-from shop.models import Clients, Specialist, CheckIn
-from shop.serializers import ClientsSerializer, SpecialistSerializer, CheckInSerializer
+from shop.models import Client, Specialist, CheckIn
+from shop.serializers import ClientSerializer, SpecialistSerializer, CheckInSerializer
 
 
-class ClientsViewSet(viewsets.ModelViewSet):
-    queryset = Clients.objects.all()
-    serializer_class = ClientsSerializer
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
@@ -19,4 +19,4 @@ class SpecialistViewSet(viewsets.ModelViewSet):
 class CheckInViewSet(viewsets.ModelViewSet):
     queryset = CheckIn.objects.all()
     serializer_class = CheckInSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
